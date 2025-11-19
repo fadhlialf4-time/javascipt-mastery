@@ -120,14 +120,11 @@ async function loadCart() {
   const res = await fetch("https://dummyjson.com/carts/1");
   const cart = await res.json();
 
-  // simpan cart
   localStorage.setItem("cart", JSON.stringify(cart));
 
-  // ambil kembali dari localStorage
   const savedCart = JSON.parse(localStorage.getItem("cart"));
   console.log("Cart dari localStorage:", savedCart);
 
-  // hitung total harga
   const total = savedCart.products.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0);
@@ -142,19 +139,13 @@ async function saveName(name) {
   try {
     if (name.length < 3) throw new Error("Nama terlalu pendek");
 
-    // simpan nama
     localStorage.setItem("username", name);
-
-    // simpan timestamp sukses
     localStorage.setItem("username_saved_at", Date.now());
-
     console.log("Nama disimpan");
 
   } catch (error) {
 
-    // simpan error ke localStorage
     localStorage.setItem("error_name", error.message);
-
     console.log(error.message);
   }
 }
@@ -163,15 +154,11 @@ async function saveName(name) {
 async function getExpensive() {
   const res = await fetch("https://dummyjson.com/products");
   const { products } = await res.json();
-
-  // filter produk dengan harga > 300
   const expensive = products
     .filter(p => p.price > 300)
-    .sort((a, b) => b.price - a.price); // urutkan descending
+    .sort((a, b) => b.price - a.price);
 
   console.log(expensive);
-
-  // simpan ke localStorage
   localStorage.setItem("expensive_products", JSON.stringify(expensive));
 }
 
@@ -187,14 +174,12 @@ async function createUser() {
       body: JSON.stringify({
         name: "Santri",
         age: 20,
-        skills: ["JavaScript", "HTML", "CSS"] // 🚀 tambah skill di sini
+        skills: ["JavaScript", "HTML", "CSS"]
       })
     });
 
     const data = await res.json();
     console.log(data);
-
-    // simpan respons ke localStorage
     localStorage.setItem("new_user", JSON.stringify(data));
 
   } catch (error) {
@@ -207,7 +192,6 @@ createUser();
 // Nomor 10
 async function updateUser(name) {
   try {
-    // validasi dulu biar ga zonk
     if (!name || name.trim() === "") {
       throw new Error("Nama tidak boleh kosong");
     }
@@ -221,12 +205,12 @@ async function updateUser(name) {
     const data = await res.json();
     console.log(data);
 
-    // simpan ke localStorage
     localStorage.setItem("updated_user", JSON.stringify(data));
 
   } catch (error) {
     console.error("Error:", error.message);
   }
 }
+
 
 updateUser("Nama Baru");
