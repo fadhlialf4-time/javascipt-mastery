@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartNotes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <button id="btnDarkMode" class="dark-btn">🌙 Mode Gelap</button>
+    <div id="auth-section" class="card">
+        <h2>SmartNotes</h2>
+
+        <div id="login-box">
+            <h3>Login</h3>
+            <input type="text" id="login-username" placeholder="Username">
+            <input type="password" id="login-password" placeholder="Password">
+            <button id="btn-login">Login</button>
+
+            <p>Belum punya akun? 
+                <a href="#" id="go-register">Register</a>
+            </p>
+        </div>
+
+        <div id="register-box" style="display:none;">
+            <h3>Register</h3>
+            <input type="text" id="reg-username" placeholder="Username">
+            <input type="password" id="reg-password" placeholder="Password">
+            <button id="btn-register">Register</button>
+
+            <p>Sudah punya akun?
+                <a href="#" id="go-login">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" style="display:none;">
+        <div class="topbar">
+            <h2>📒 SmartNotes</h2>
+            <button id="btn-logout" class="logout">Logout</button>
+        </div>
+
+        <div class="quote-box" id="quote-box">Loading quote...</div>
+
+        <div class="add-box card">
+            <h3>Buat Catatan</h3>
+            <input type="text" id="note-title" placeholder="Judul">
+            <textarea id="note-content" placeholder="Isi catatan..."></textarea>
+            <button id="btn-add-note">Tambah</button>
+        </div>
+
+        <h3>Daftar Catatan</h3>
+        <div id="notes-list"></div>
+    </div>
+
+
+    <script type="module" src="folder-js/db.js"></script>
+    <script type="module" src="folder-js/auth.js"></script>
+    <script type="module" src="folder-js/ui.js"></script>
+    <script type="module" src="folder-js/main.js"></script>
+</body>
+</html>
